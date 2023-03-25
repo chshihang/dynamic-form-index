@@ -1,0 +1,15 @@
+<div [formGroup]="formGroup" class="form-group row">
+  <label class="col-sm-4 col-form-label text-right">{{form.label}}：</label>
+  <div class="col-sm-8">
+    <ng-container *ngFor="let option of form.options">
+      <input type="radio"
+             [name]="form.key"
+             [formControlName]="form.key"
+             [value]="option.value"
+      >
+      <label class="mr-2 pt-1">
+        {{option.label}}
+      </label>
+    </ng-container>
+  </div>
+</div>

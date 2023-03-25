@@ -1,0 +1,7 @@
+<div [formGroup]="formGroup" class="form-group row">
+  <label [for]="form.key" class="col-sm-4 col-form-label text-right">{{ form.label }}：</label>
+  <div class="col-sm-8 pt-1">
+    <input type="checkbox" class="custom-control" [id]="form.key"
+           [name]="form.key" [formControlName]="form.key" [value]="form.value"/>
+  </div>
+</div>

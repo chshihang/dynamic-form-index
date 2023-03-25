@@ -1,0 +1,8 @@
+<div [formGroup]="formGroup" class="form-group row">
+  <label [for]="form.key" class="col-sm-4 col-form-label text-right">{{ form.label }}：</label>
+  <div class="col-sm-8">
+    <select [formControlName]="form.key" [id]="form.key" class="custom-select">
+      <option *ngFor="let opt of form.options" [value]="opt.value"> {{ opt.label }}</option>
+    </select>
+  </div>
+</div>
