@@ -4,9 +4,9 @@
 import {Apply} from './apply';
 import {Field} from './field';
 
-export interface FieldRecord<T> {
+export interface FieldRecord {
   id: number;
   apply: Apply;
   field: Field;
-  value: T;
+  value: string | number;
 }

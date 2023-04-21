@@ -24,4 +24,5 @@ export interface Field {
   weight: number;
   // 细分类型 text number email
   type: string;
+  isShow: boolean; // 是否在index界面显示
 }

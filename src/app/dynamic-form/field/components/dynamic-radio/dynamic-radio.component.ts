@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup, FormGroupDirective} from '@angular/forms';
-import {FormInfo} from '../../../../../entity/form-info';
-import {DynamicFormControlInterface} from '../../../../../interface/dynamic-form.interface';
+import {FormInfo} from '../../../entity/form-info';
+import {DynamicFormControlInterface} from '../../interface/dynamic-form.interface';
 
 @Component({
   selector: 'app-dynamic-radio',

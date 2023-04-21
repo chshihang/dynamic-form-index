@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {FormInfo} from '../../../entity/form-info';
+import {FormInfo} from '../entity/form-info';
 
 @Component({
   selector: 'app-form',

@@ -1,8 +1,8 @@
 import {AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {FormInfo} from '../../../entity/form-info';
+import {FormInfo} from '../entity/form-info';
 import {FormGroup, FormGroupDirective} from '@angular/forms';
 import {CdkPortalOutlet, ComponentPortal} from '@angular/cdk/portal';
-import {DynamicFormControlInterface} from '../../../interface/dynamic-form.interface';
+import {DynamicFormControlInterface} from './interface/dynamic-form.interface';
 import {DynamicControlsRecords} from './components/control-type-list.config';
 import {ComponentType} from '@angular/cdk/portal/portal';
 

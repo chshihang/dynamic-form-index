@@ -11,5 +11,5 @@ export interface Apply {
 
   applyType: ApplyType;
 
-  fieldRecords: FieldRecord<any>[];
+  fieldRecords: FieldRecord[];
 }

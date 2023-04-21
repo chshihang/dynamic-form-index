@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormInfo} from '../../../entity/form-info';
+import {FormInfo} from '../../dynamic-form/entity/form-info';
 import {MockApplyType} from '../../../assets/mock-form-data';
-import {DynamicFormService} from '../../../service/dynamic-form.service';
+import {DynamicFormService} from '../../dynamic-form/field/services/dynamic-form.service';
 
 @Component({
   selector: 'app-teacher-add',

@@ -5,6 +5,7 @@ import {TeacherRoutingModule} from './teacher-routing.module';
 import { TeacherAddComponent } from './teacher-add/teacher-add.component';
 import { TeacherEditComponent } from './teacher-edit/teacher-edit.component';
 import {DynamicFormModule} from '../dynamic-form/dynamic-form.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 /**
@@ -16,10 +17,11 @@ import {DynamicFormModule} from '../dynamic-form/dynamic-form.module';
     TeacherAddComponent,
     TeacherIndexComponent
   ],
-  imports: [
-    CommonModule,
-    TeacherRoutingModule,
-    DynamicFormModule
-  ]
+    imports: [
+        CommonModule,
+        TeacherRoutingModule,
+        DynamicFormModule,
+        ReactiveFormsModule
+    ]
 })
 export class TeacherModule { }
