@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {FormInfo} from '../entity/form-info';
 
@@ -10,21 +10,32 @@ export class FormComponent implements OnInit {
 
   formGroup!: FormGroup;
 
-  @Input() forms: FormInfo<any>[] = [];
+  forms: FormInfo<any>[] = [];
+
+  @Input()
+  set formInfos(forms: FormInfo<any>[]) {
+    this.setForm(forms)
+  }
+  @Output()
+  formGroupValue = new EventEmitter<Record<string, string>>();
+
+  setForm(forms: FormInfo<any>[]): void {
+    this.forms = forms;
+    this.formGroup = this.toFormGroup(forms as FormInfo<any>[]);
+  }
 
   constructor() { }
 
   ngOnInit(): void {
-    this.formGroup = this.toFormGroup(this.forms as FormInfo<any>[]);
   }
 
   onSubmit(): void {
     console.log('onSubmit', this.formGroup.value);
+    this.formGroupValue.emit(this.formGroup.value);
   }
 
   toFormGroup(forms: FormInfo<any>[]): FormGroup {
     const group: any = {};
-
     forms.forEach(form => {
       group[form.key] = form.rule.required ?
         new FormControl(form.value || '', Validators.required) :

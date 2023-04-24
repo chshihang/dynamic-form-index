@@ -10,14 +10,29 @@ import {
 } from '../components/control-type-list.config';
 import {FieldValidator} from '../../entity/field-validator';
 import {TableLabel} from '../../entity/table-label';
-import {MockApply, MockApplys, MockDataSets} from '../../../../assets/mock-form-data';
 import {DataSet} from '../../entity/data-set';
 import {DynamicServiceInterface} from '../interface/dynamic-service.interface';
+import {MockApplys, MockApplyTypes, MockDataSets} from '../../../MockData';
+import {Observable, Subject} from 'rxjs';
+import {FieldRecord} from '../../entity/field-record';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DynamicFormService {
+
+  applyTypeSubject = new Subject<ApplyType>();
+  applyType: ApplyType | undefined;
+  applys = MockApplys;
+  applyId = 4;
+
+  sendApplyTypeData(data: ApplyType): void {
+    this.applyTypeSubject.next(data);
+  }
+
+  getApplyTypes(): ApplyType[] {
+    return MockApplyTypes;
+  }
   getFormInfos(object: Apply | ApplyType): FormInfo<any>[] {
     const formInfos: FormInfo<any>[] = [];
     // 判断类别是 apply还是 applyType
@@ -30,6 +45,7 @@ export class DynamicFormService {
       (object as ApplyType).fields.forEach(field => {
         formInfos.push(this.getFormInfo(field));
       });
+      console.log('getFormInfos', formInfos);
     }
     return formInfos.sort((a, b) => a.weight - b.weight);
   }
@@ -81,7 +97,10 @@ export class DynamicFormService {
       const fields = apply.applyType.fields;
       const fieldRecords = apply.fieldRecords;
       const content = {} as Record<string, string>;
-      fieldRecords.forEach(fieldRecord => {
+      fieldRecords.forEach((fieldRecord, index) => {
+        if (index === 0) {
+          content['id'] = fieldRecord.apply.id.toString();
+        }
         fields.forEach(field => {
           if (field.isShow && fieldRecord.field.id === field.id) {
             content[field.key] = (DynamicValueServices[field.fieldType.type] as DynamicServiceInterface)
@@ -102,4 +121,37 @@ export class DynamicFormService {
     })
     return dataSet;
   }
+
+  getApplyById(applyId: number): Apply{
+    return this.applys.filter(apply => apply.id === applyId)[0];
+  }
+
+  addApply(formGroupValue: Record<string, string>): void {
+    const apply = {
+      id: this.applyId++,
+      status: 0,
+      applyType: this.applyType
+    } as Apply;
+    const fieldRecords = [] as FieldRecord[];
+    this.applyType?.fields.forEach(field => {
+      fieldRecords.push(this.getFieldRecord(apply, field, formGroupValue[field.key]));
+    })
+    apply.fieldRecords = fieldRecords;
+    this.applys.push(apply);
+  }
+
+  private getFieldRecord(apply: Apply, field: Field, value: string): FieldRecord {
+    return {
+      apply, field, value
+    } as FieldRecord;
+  }
+
+  updateApply(applyId: number, formGroupValue: Record<string, string>): void {
+    const apply = this.getApplyById(applyId);
+    apply.fieldRecords.forEach(fieldRecord => {
+      let field = fieldRecord.field;
+      fieldRecord.value = formGroupValue[field.key];
+    })
+  }
+
 }

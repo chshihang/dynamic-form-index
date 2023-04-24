@@ -1,13 +1,22 @@
 <div class="row">
   <div class="col col-sm-8">
+    <app-index></app-index>
   </div>
   <div class="col col-sm-4">
-    <router-outlet name="app"></router-outlet>
+    <hr/>
+    <div class="form-group row mt-3">
+      <button class="btn btn-primary" routerLink="add">新增</button>
+      <label for="typeSelect" class="col-sm-3 col-form-label text-right">类型</label>
+      <div class="col-sm-5 mt-1">
+        <select class="form-control" id="typeSelect" [formControl]="applyTypeId">
+          <option *ngFor="let applyType of applyTypes" [value]="applyType.id">
+            {{applyType.name}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <hr>
+    <router-outlet></router-outlet>
   </div>
 </div>
 
-<br>
-<br>
-<br>
-<hr/>
-<router-outlet></router-outlet>

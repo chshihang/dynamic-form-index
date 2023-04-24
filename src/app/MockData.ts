@@ -1,10 +1,10 @@
-import {Field} from '../app/dynamic-form/entity/field';
-import {Apply} from '../app/dynamic-form/entity/apply';
-import {FieldRecord} from '../app/dynamic-form/entity/field-record';
-import {DataSet} from '../app/dynamic-form/entity/data-set';
-import {DataItem} from '../app/dynamic-form/entity/data-item';
-import {ApplyType} from '../app/dynamic-form/entity/apply-type';
-import {FieldValidator} from '../app/dynamic-form/entity/field-validator';
+import {Field} from './dynamic-form/entity/field';
+import {Apply} from './dynamic-form/entity/apply';
+import {FieldRecord} from './dynamic-form/entity/field-record';
+import {DataSet} from './dynamic-form/entity/data-set';
+import {DataItem} from './dynamic-form/entity/data-item';
+import {ApplyType} from './dynamic-form/entity/apply-type';
+import {FieldValidator} from './dynamic-form/entity/field-validator';
 
 const MockDataItems = [
   {id: 1, name: '男', weight: 2, dataSet: {id: 1} as DataSet},
@@ -31,6 +31,7 @@ const MockFields1 = [
   {id: 5, fieldType: {id: 5, type: 'radio'}, fieldValidators: MockFieldValidators,
     key: 'sex', label: '性别', dataSet: MockDataSets[0], weight: 5, type: '', isShow: true},
 ] as Field[];
+
 const MockFields2 = [
   {id: 6, fieldType: {id: 6, type: 'textbox'}, fieldValidators: MockFieldValidators,
     key: 'name', label: '申请人姓名', weight: 1, type: 'text', isShow: true},
@@ -40,14 +41,14 @@ const MockFields2 = [
     key: 'destination', label: '目的地', weight: 3, type: 'text', isShow: true},
 ] as Field[];
 
-export const MockApplyType = {
+export const MockApplyType1 = {
   id: 1, name: '教师新增', fields: MockFields1
 } as ApplyType;
 export const MockApplyType2 = {
   id: 2, name: '出校申请', fields: MockFields2
 } as ApplyType;
 export const MockApplyTypes = [
-  MockApplyType, MockApplyType2
+  MockApplyType1, MockApplyType2
 ] as ApplyType[];
 
 const MockFieldRecords1 = [
@@ -72,12 +73,8 @@ const MockFieldRecords3 = [
   {id: 13, apply: {id: 3}, field: MockFields2[2], value: '医院'},
 ] as FieldRecord[];
 
-export const MockApply = {
-  id: 1, applyType: MockApplyType, status: 0, fieldRecords: MockFieldRecords1
-} as Apply;
-
 export const MockApplys = [
-  MockApply,
-  {id: 2, applyType: MockApplyType, status: 0, fieldRecords: MockFieldRecords2},
+  {id: 1, applyType: MockApplyType1, status: 0, fieldRecords: MockFieldRecords1},
+  {id: 2, applyType: MockApplyType1, status: 0, fieldRecords: MockFieldRecords2},
   {id: 3, applyType: MockApplyType2, status: 0, fieldRecords: MockFieldRecords3}
 ] as Apply[];

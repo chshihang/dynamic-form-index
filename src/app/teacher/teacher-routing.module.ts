@@ -6,18 +6,18 @@ import {TeacherEditComponent} from './teacher-edit/teacher-edit.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'teacher',
     component: TeacherIndexComponent,
     data: {
       title: '首页'
     },
     children: [
       {
-        path: 'add',
+        path: 'teacher/add',
         component: TeacherAddComponent,
       },
       {
-        path: 'edit/:teacherId',
+        path: 'teacher/edit/:teacherId',
         component: TeacherEditComponent,
       }
     ]

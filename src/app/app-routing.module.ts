@@ -7,16 +7,14 @@ const routes: Routes = [
   {
     path: 'add',
     component: AddComponent,
-    outlet: 'app',
   },
   {
     path: 'edit/:id',
     component: EditComponent,
-    outlet: 'app',
   },
   {
     path: '',
-    component: TeacherIndexComponent,
+    component: AddComponent,
     data: {
       title: '教师管理'
     },
