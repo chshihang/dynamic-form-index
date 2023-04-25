@@ -19,9 +19,10 @@ export class IndexComponent implements OnInit {
   applyType = {} as ApplyType;
 
   ngOnInit(): void {
-    // this.initView();
+    this.initView();
     this.applyTypeId.valueChanges.subscribe(() => {
       this.setApplyType();
+      this.renderData();
     })
   }
 
@@ -39,10 +40,10 @@ export class IndexComponent implements OnInit {
     })
   }
 
-  // private initView() {
-  //   console.log('initView', [...this.applyTypes]);
-  //   this.applyTypeId.setValue(this.applyTypes[0]);
-  //   this.setApplyType();
-  //   this.renderData();
-  // }
+  private initView() {
+    console.log('initView', [...this.applyTypes], );
+    this.applyTypeId.setValue(this.applyTypes[0].id);
+    this.setApplyType();
+    this.renderData();
+  }
 }
