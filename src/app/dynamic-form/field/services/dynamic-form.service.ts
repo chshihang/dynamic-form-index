@@ -78,14 +78,14 @@ export class DynamicFormService {
   }
 
   getApplysByApplyType(applyType: ApplyType): Apply[] {
-    return MockApplys.filter(apply => apply.applyType.id === applyType.id);
+    return this.applys.filter(apply => apply.applyType.id === applyType.id);
   }
 
   getLabelsByApplyType(applyType: ApplyType): TableLabel[] {
     const labels: TableLabel[] = [];
     applyType.fields.forEach(field => {
       if (field.isShow) {
-        labels.push({name: field.label, key: field.key, weight: field.weight});
+        labels.push({name: field.label, key: field.key, weight: field.weight} as TableLabel);
       }
     })
     return labels.sort((a, b) => a.weight - b.weight);

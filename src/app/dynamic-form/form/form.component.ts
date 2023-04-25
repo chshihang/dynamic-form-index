@@ -30,7 +30,6 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('onSubmit', this.formGroup.value);
     this.formGroupValue.emit(this.formGroup.value);
   }
 
